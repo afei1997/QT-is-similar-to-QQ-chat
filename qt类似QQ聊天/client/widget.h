@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QMouseEvent>
 #include <QTcpSocket>
+#include "myregister.h"
 
 namespace Ui {
 class Widget;
@@ -28,6 +29,9 @@ protected:
 private slots:
     void on_loginButton_clicked();
     void on_pButtonRegistAccount_clicked();
+
+    void tomainSlot(bool);
+
 };
 
 #endif // WIDGET_H

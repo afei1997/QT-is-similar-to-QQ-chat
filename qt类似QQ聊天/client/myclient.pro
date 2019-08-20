@@ -26,16 +26,19 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
+        mychat.cpp \
         myinterface.cpp \
         myregister.cpp \
         widget.cpp
 
 HEADERS += \
+        mychat.h \
         myinterface.h \
         myregister.h \
         widget.h
 
 FORMS += \
+        mychat.ui \
         myinterface.ui \
         myregister.ui \
         widget.ui

@@ -22,6 +22,9 @@ private slots:
 private:
     Ui::MyRegister *ui;
     QTcpSocket *s;
+
+signals:
+    void mySignal(bool);
 };
 
 #endif // MYREGISTER_H

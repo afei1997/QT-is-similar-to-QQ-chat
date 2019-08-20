@@ -1,5 +1,6 @@
 #include "widget.h"
 #include "ui_widget.h"
+#include "myinterface.h"
 #include <QMovie>
 #include <QRegExpValidator>
 #include <QDebug>
@@ -55,8 +56,7 @@ void Widget::mouseReleaseEvent(QMouseEvent *e)
 
 void Widget::on_loginButton_clicked()
 {
-    if((ui->nameEdit->text().isEmpty()) || (ui->passwordEdit->text().isEmpty())
-            || (ui->nameEdit->text().size()<8))
+    if((ui->nameEdit->text().isEmpty()) || (ui->passwordEdit->text().isEmpty()))
     {
         QMessageBox::warning(this, "警告","请将信息填写完毕",
                              QMessageBox::Ok);
@@ -73,6 +73,7 @@ void Widget::on_loginButton_clicked()
         chmond+=ui->nameEdit->text();
         chmond+=" ";
         chmond+=ui->passwordEdit->text();
+        qDebug() << "chmond" <<chmond <<endl;
         QByteArray arr;
         arr.append(chmond);
         s->write(arr);
@@ -94,8 +95,10 @@ void Widget::on_loginButton_clicked()
             QMessageBox::warning(this, "提示","用户已经在线",
                                  QMessageBox::Ok);
         }
-        else {
-
+        else if(text=="yes"){
+            MyInterface *in=new MyInterface(s,ui->nameEdit->text());
+            in->show();
+            this->hide();
         }
         ui->loginButton->setEnabled(true);
     }
@@ -103,7 +106,21 @@ void Widget::on_loginButton_clicked()
 
 void Widget::on_pButtonRegistAccount_clicked()
 {
+
     MyRegister *re=new MyRegister;
-    this->close();
     re->show();
+    connect(re,SIGNAL(mySignal(bool)),this,SLOT(tomainSlot(bool)));
+    this->hide();
+}
+
+void Widget::tomainSlot(bool n)
+{
+    if(n)
+    {
+        qDebug("%s\n",__func__);
+        this->show();
+    }
+    else {
+        this->close();
+    }
 }

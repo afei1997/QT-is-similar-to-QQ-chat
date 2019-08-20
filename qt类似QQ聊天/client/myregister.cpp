@@ -81,9 +81,9 @@ void MyRegister::on_registerBtn_clicked()
             QMessageBox::warning(this, "提示","注册成功",
                                  QMessageBox::Ok);
             s->close();
+            this->hide();
+            emit mySignal(true);
             this->close();
-            Widget *q=new Widget;
-            q->show();
         }
         else if (text=="existing") {
             QMessageBox::warning(this, "提示","用户已经存在",
