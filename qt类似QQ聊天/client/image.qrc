@@ -1,0 +1,15 @@
+<RCC>
+    <qresource prefix="/">
+        <file>oneimage/HeadImage.png</file>
+        <file>oneimage/back.gif</file>
+        <file>oneimage/closeback.png</file>
+        <file>oneimage/more_accountlogin.png</file>
+        <file>oneimage/flicker.png</file>
+        <file>oneimage/minback.png</file>
+        <file>oneimage/checkbox.png</file>
+        <file>oneimage/drop_down_Button.png</file>
+        <file>oneimage/arrowback.png</file>
+        <file>oneimage/1.jpg</file>
+        <file>ip.txt</file>
+    </qresource>
+</RCC>

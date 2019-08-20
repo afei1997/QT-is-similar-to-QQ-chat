@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Widget</class>
+ <widget class="QWidget" name="Widget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>430</width>
+    <height>315</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Widget</string>
+  </property>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>-10</y>
+     <width>431</width>
+     <height>181</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>180</y>
+     <width>81</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/oneimage/HeadImage.png);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="nameEdit">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>190</y>
+     <width>181</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-color: rgb(255, 255, 255);</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="passwordEdit">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>220</y>
+     <width>181</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="echoMode">
+    <enum>QLineEdit::Password</enum>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pButtonRegistAccount">
+   <property name="geometry">
+    <rect>
+     <x>320</x>
+     <y>190</y>
+     <width>75</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton#pButtonRegistAccount
+{
+    color:rgb(38 , 133 , 227);
+    background-color:transparent;
+}
+
+QPushButton#pButtonRegistAccount:hover
+{
+    color:rgb(97 , 179 , 246);
+}
+
+QPushButton#pButtonRegistAccount:pressed
+{
+    color:rgb(0 , 109 , 176);
+}
+</string>
+   </property>
+   <property name="text">
+    <string>注册账号</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pButtonForgetPassword">
+   <property name="geometry">
+    <rect>
+     <x>320</x>
+     <y>220</y>
+     <width>75</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton#pButtonForgetPassword
+{
+    color:rgb(38 , 133 , 227);
+    background-color:transparent;
+}
+
+QPushButton#pButtonForgetPassword:hover
+{
+    color:rgb(97 , 179 , 246);
+}
+
+QPushButton#pButtonForgetPassword:pressed
+{
+    color:rgb(0 , 109 , 176);
+}
+</string>
+   </property>
+   <property name="text">
+    <string>找回密码</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="checkBox">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>260</y>
+     <width>71</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QCheckBox
+{
+    color:rgb(101 , 101 , 101);
+}
+
+QCheckBox::indicator:unchecked
+{
+    border-image:url(:/oneimage/checkbox.png) 0 39 0 0;
+}
+QCheckBox::indicator:hover
+{
+    border-image:url(:/oneimage/checkbox.png) 0 26 0 13;
+}
+QCheckBox::indicator:pressed
+{
+    border-image:url(:/oneimage/checkbox.png) 0 13 0 26;
+}
+QCheckBox::indicator:checked
+{
+    border-image:url(:/oneimage/checkbox.png) 0 0 0 39;
+}</string>
+   </property>
+   <property name="text">
+    <string>记住密码</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="checkBox_2">
+   <property name="geometry">
+    <rect>
+     <x>230</x>
+     <y>260</y>
+     <width>71</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QCheckBox
+{
+    color:rgb(101 , 101 , 101);
+}
+
+QCheckBox::indicator:unchecked
+{
+    border-image:url(:/oneimage/checkbox.png) 0 39 0 0;
+}
+QCheckBox::indicator:hover
+{
+    border-image:url(:/oneimage/checkbox.png) 0 26 0 13;
+}
+QCheckBox::indicator:pressed
+{
+    border-image:url(:/oneimage/checkbox.png) 0 13 0 26;
+}
+QCheckBox::indicator:checked
+{
+    border-image:url(:/oneimage/checkbox.png) 0 0 0 39;
+}</string>
+   </property>
+   <property name="text">
+    <string>自动登录</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="loginButton">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>280</y>
+     <width>181</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton#loginButton
+{
+    color:white;
+    background-color:rgb(14 , 150 , 254);
+    border-radius:5px;
+}
+
+QPushButton#loginButton:hover
+{
+    color:white;
+    background-color:rgb(44 , 137 , 255);
+}
+
+QPushButton#loginButton:pressed
+{
+    color:white;
+    background-color:rgb(14 , 135 , 228);
+    padding-left:3px;
+    padding-top:3px;
+}
+</string>
+   </property>
+   <property name="text">
+    <string>登录</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pButtonClose">
+   <property name="geometry">
+    <rect>
+     <x>400</x>
+     <y>0</y>
+     <width>31</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton
+{
+    border-image:url(:/oneimage/closeback.png) 0 60 0 0 ;
+}
+
+QPushButton:hover
+{
+    border-image:url(:/oneimage/closeback.png) 0 30 0 30 ;
+}
+
+QPushButton:pressed
+{
+    border-image:url(:/oneimage/closeback.png) 0 0 0 60 ;
+}</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pButtonMin">
+   <property name="geometry">
+    <rect>
+     <x>370</x>
+     <y>0</y>
+     <width>31</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton#pButtonMin
+{
+    border-image:url(:/oneimage/minback.png) 0 60 0 0 ;
+}
+
+QPushButton#pButtonMin:hover
+{
+    border-image:url(:/oneimage/minback.png) 0 30 0 30 ;
+}
+
+QPushButton#pButtonMin:pressed
+{
+    border-image:url(:/oneimage/minback.png) 0 0 0 60 ;
+}</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pButtonArrow">
+   <property name="geometry">
+    <rect>
+     <x>340</x>
+     <y>0</y>
+     <width>31</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton#pButtonArrow
+{
+    border-image:url(:/oneimage/arrowback.png) 0 60 0 0 ;
+}
+
+QPushButton#pButtonArrow:hover
+{
+    border-image:url(:/oneimage/arrowback.png) 0 30 0 30 ;
+}
+
+QPushButton#pButtonArrow:pressed
+{
+    border-image:url(:/oneimage/arrowback.png) 0 0 0 60 ;
+}
+</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pButtongFlicker">
+   <property name="geometry">
+    <rect>
+     <x>400</x>
+     <y>290</y>
+     <width>21</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton#pButtongFlicker
+{
+    border-image:url(:/oneimage/flicker.png) 0 44 0 0;
+}
+
+QPushButton#pButtongFlicker:hover
+{
+    border-image:url(:/oneimage/flicker.png) 0 22 0 22;
+}
+
+QPushButton#pButtongFlicker:pressed
+{
+    border-image:url(:/oneimage/flicker.png) 0 0 0 44;
+}
+</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="moreAccountLogin">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>291</y>
+     <width>20</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton#moreAccountLogin
+{
+    border-image:url(:/oneimage/more_accountlogin.png) 1 47 1 1;    /*1是由于图片保存问题图片大了两个像素*/
+}
+
+QPushButton#moreAccountLogin:hover
+{
+    border-image:url(:/oneimage/more_accountlogin.png) 1 24 1 24;
+}
+
+QPushButton#moreAccountLogin:pressed
+{
+    border-image:url(:/oneimage/more_accountlogin.png) 1 1 1 47;
+}
+</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>pButtonClose</sender>
+   <signal>clicked()</signal>
+   <receiver>Widget</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>415</x>
+     <y>15</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>214</x>
+     <y>164</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pButtonMin</sender>
+   <signal>clicked()</signal>
+   <receiver>Widget</receiver>
+   <slot>showMinimized()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>385</x>
+     <y>15</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>214</x>
+     <y>164</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
