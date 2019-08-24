@@ -26,18 +26,26 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
+        mychangeinfo.cpp \
+        mychangeip.cpp \
         mychat.cpp \
         myinterface.cpp \
         myregister.cpp \
+        mythread.cpp \
         widget.cpp
 
 HEADERS += \
+        mychangeinfo.h \
+        mychangeip.h \
         mychat.h \
         myinterface.h \
         myregister.h \
+        mythread.h \
         widget.h
 
 FORMS += \
+        mychangeinfo.ui \
+        mychangeip.ui \
         mychat.ui \
         myinterface.ui \
         myregister.ui \
@@ -52,3 +60,4 @@ RESOURCES += \
     image.qrc
 
 DISTFILES +=
+

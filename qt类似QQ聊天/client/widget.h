@@ -5,6 +5,7 @@
 #include <QMouseEvent>
 #include <QTcpSocket>
 #include "myregister.h"
+#include "mychangeip.h"
 
 namespace Ui {
 class Widget;
@@ -22,6 +23,9 @@ private:
     Ui::Widget *ui;
     QPoint last;
     QTcpSocket *s;
+    QString ip;
+    quint16 port;
+    MyChangeIp change;
 protected:
     void mousePressEvent(QMouseEvent *e);
     void mouseMoveEvent(QMouseEvent *e);
@@ -31,7 +35,8 @@ private slots:
     void on_pButtonRegistAccount_clicked();
 
     void tomainSlot(bool);
-
+    void changeIP();
+    void on_pButtonArrow_clicked();
 };
 
 #endif // WIDGET_H

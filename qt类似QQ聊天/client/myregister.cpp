@@ -6,14 +6,12 @@
 #include <QMessageBox>
 #include <QHostAddress>
 
-MyRegister::MyRegister(QWidget *parent) :
+MyRegister::MyRegister(QTcpSocket *s1,QWidget *parent) :
     QWidget(parent),
     ui(new Ui::MyRegister)
 {
     ui->setupUi(this);
-    s = new QTcpSocket(this);
-    s->connectToHost(QHostAddress("127.0.0.1"), 8888);
-
+    s=s1;
     ui->idEdit->setValidator(new QRegExpValidator(QRegExp("[0-9]+$")));
     setWindowTitle("注册页面");
     setWindowIcon(QIcon(":/oneimage/HeadImage.png"));
@@ -76,11 +74,18 @@ void MyRegister::on_registerBtn_clicked()
         QString text;
         text.append(arr1);
         qDebug()<<"text"<<text<<endl;
-        if(text=="yes")
+        if(text.isEmpty())
+        {
+            QMessageBox::warning(this, "警告","服务器退出或者IP地址或端口号不对\n可选择登录窗口的右上方改变端口号或IP地址",
+                                 QMessageBox::Ok);
+            emit mySignal(true);
+            this->close();
+            return ;
+        }
+        else if (text=="yes")
         {
             QMessageBox::warning(this, "提示","注册成功",
                                  QMessageBox::Ok);
-            s->close();
             this->hide();
             emit mySignal(true);
             this->close();

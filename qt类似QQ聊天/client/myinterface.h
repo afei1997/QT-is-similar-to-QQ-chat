@@ -8,6 +8,8 @@
 #include <QStandardItem>
 #include "mychat.h"
 #include <QCloseEvent>
+#include "mychangeinfo.h"
+#include "mythread.h"
 
 namespace Ui {
 class MyInterface;
@@ -39,18 +41,28 @@ private:
     QStandardItemModel* model;
     QStandardItem * item;
     QStandardItem *myfriends;
+    int flag;
     QList<friendinfo>feiendinfos;
+    MyChangeInfo changeinfo;
+    QPixmap changeIcon;
+    QString tempid;
+    QString tempname;
+    QPixmap tempicon;
+    MyThread *thr;
 protected:
     void mousePressEvent(QMouseEvent *e);
     void mouseMoveEvent(QMouseEvent *e);
     void mouseReleaseEvent(QMouseEvent *e);
     void changeStandardItem(QString,bool);
 protected slots:
-    void serversend();
+    void serversend(QString,QPixmap);
+    void change(QString);
 signals:
     void signalRecvData(QString);
+    void signThread(QPixmap,QString);
 private slots:
     void on_treeView_doubleClicked(const QModelIndex &index);
+    void on_pushButton_clicked();
 };
 
 #endif // MYINTERFACE_H

@@ -13,8 +13,31 @@ Widget::Widget(QWidget *parent) :
     ui(new Ui::Widget)
 {
     ui->setupUi(this);
+
+    QFile file("ip_port.txt");
+    if(!file.open(QIODevice::ReadWrite | QIODevice::Text))
+    {
+        qDebug()<<"Can't open the file!"<<endl;
+    }
+    QByteArray line = file.readLine();
+    QString ip_port;
+    ip_port.append(line);
+    if(ip_port==nullptr)
+    {
+        ip="127.0.0.1";
+        port=quint16(8888);
+        ip_port="127.0.0.1 ";
+        ip_port+="8888";
+        QByteArray new_ip_port;
+        new_ip_port.append(ip_port);
+        file.write(new_ip_port);
+    }
+    else {
+        ip=ip_port.section(' ',0,0);
+        port=quint16(ip_port.section(' ',1,1).toUInt());
+    }
     s = new QTcpSocket(this);
-    s->connectToHost(QHostAddress("127.0.0.1"), 8888);
+    s->connectToHost(QHostAddress(ip), port);
 
     setWindowFlags(Qt::FramelessWindowHint);
     QMovie *movie = new QMovie();
@@ -29,6 +52,9 @@ Widget::Widget(QWidget *parent) :
 
     setWindowIcon(QIcon(":/oneimage/HeadImage.png"));
     ui->nameEdit->setValidator(new QRegExpValidator(QRegExp("[0-9]+$")));
+
+    connect(&change,SIGNAL(signalChange()),this,SLOT(changeIP()));
+
 }
 
 Widget::~Widget()
@@ -83,7 +109,13 @@ void Widget::on_loginButton_clicked()
         QString text;
         text.append(arr1);
         qDebug()<<"text"<<text<<endl;
-        if(text=="no")
+        if(text.isEmpty())
+        {
+            QMessageBox::warning(this, "警告","服务器退出或者ip地址或端口号不对，可选择右上方进行改变",
+                                 QMessageBox::Ok);
+            return ;
+        }
+        else if(text=="no")
         {
             QMessageBox::warning(this, "提示","用户名或密码不正确",
                                  QMessageBox::Ok);
@@ -107,9 +139,9 @@ void Widget::on_loginButton_clicked()
 void Widget::on_pButtonRegistAccount_clicked()
 {
 
-    MyRegister *re=new MyRegister;
-    re->show();
+    MyRegister *re=new MyRegister(s);
     connect(re,SIGNAL(mySignal(bool)),this,SLOT(tomainSlot(bool)));
+    re->show();
     this->hide();
 }
 
@@ -123,4 +155,27 @@ void Widget::tomainSlot(bool n)
     else {
         this->close();
     }
+}
+
+void Widget::changeIP()
+{
+    s->close();
+    QFile file("ip_port.txt");
+    if(!file.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        qDebug()<<"Can't open the file!"<<endl;
+    }
+    QByteArray line = file.readLine();
+    QString ip_port;
+    ip_port.append(line);
+    ip=ip_port.section(' ',0,0);
+    port=quint16(ip_port.section(' ',1,1).toUInt());
+
+    s = new QTcpSocket(this);
+    s->connectToHost(QHostAddress(ip), port);
+}
+
+void Widget::on_pButtonArrow_clicked()
+{
+    change.show();
 }

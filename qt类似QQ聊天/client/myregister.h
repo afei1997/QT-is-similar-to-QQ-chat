@@ -13,7 +13,7 @@ class MyRegister : public QWidget
     Q_OBJECT
 
 public:
-    explicit MyRegister(QWidget *parent = nullptr);
+    explicit MyRegister(QTcpSocket *,QWidget *parent = nullptr);
     ~MyRegister();
 
 private slots:
@@ -22,7 +22,6 @@ private slots:
 private:
     Ui::MyRegister *ui;
     QTcpSocket *s;
-
 signals:
     void mySignal(bool);
 };
