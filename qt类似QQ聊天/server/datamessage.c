@@ -31,6 +31,7 @@ sqlite3 *db_create(void)
         return NULL;
     }
     char *k="CREATE TEMPORARY TABLE online(id INTEGER PRIMARY KEY NOT NULL,isonline INTEGER NOT NULL DEFAULT 0,sockfd INTEGER DEFAULT -1)";
+    // char *k="CREATE TABLE IF NOT EXISTS online(id INTEGER PRIMARY KEY NOT NULL,isonline INTEGER NOT NULL DEFAULT 0,sockfd INTEGER DEFAULT -1)";
     ret=sqlite3_exec(db, k, NULL,NULL, &errmsg);
     if(ret!=SQLITE_OK)
     {
@@ -38,6 +39,14 @@ sqlite3 *db_create(void)
         sqlite3_close(db);
         return NULL;
     }
+
+    // ret=sqlite3_exec(db, "DELETE FROM online", NULL,NULL, &errmsg);
+    // if(ret!=SQLITE_OK)
+    // {
+    //     printf("user:%s\n",errmsg);
+    //     sqlite3_close(db);
+    //     return NULL;
+    // }
 
     ret=sqlite3_exec(db, "INSERT INTO online(id) SELECT id FROM user", NULL,NULL, &errmsg);
     if(ret!=SQLITE_OK)
@@ -77,13 +86,15 @@ int sign_in_db(sqlite3 *db,int id,char *userpass,char *username,char *usericon,i
         return -1;
     } 
     if(1==i)
+    {
+        printf("have user online\n");
         return 1;
-
+    }
     strcpy(username,pazresult[m+1]);
     strcpy(usericon,pazresult[m+3]);
     bzero(chmond,sizeof(chmond));
     sprintf(chmond,"UPDATE online SET isonline=1,sockfd=%d WHERE id=%d",sockfd,id);
-    ret=sqlite3_exec(db, chmond, NULL,NULL, &errmsg);
+    ret=sqlite3_get_table(db,chmond,&pazresult1,&i,&j,&errmsg);
     if(ret!=SQLITE_OK)
     {
         printf("online sockfd:%s\n",errmsg);
@@ -116,6 +127,15 @@ int logon_db(sqlite3 *db,int id,char *username,char *userpass)
         if(ret!=SQLITE_OK)
         {
             printf("logon_db:%s\n",errmsg);
+            return -1;
+        }
+
+        bzero(chmond,sizeof(chmond));
+        sprintf(chmond,"INSERT INTO online(id) VALUES(%d)",id);
+        ret=sqlite3_exec(db, chmond, NULL,NULL, &errmsg);
+        if(ret!=SQLITE_OK)
+        {
+            printf("user:%s\n",errmsg);
             return -1;
         }
         return 0;
@@ -306,4 +326,23 @@ int find_sockfd_db(sqlite3* db,int id,int *sockfd)
         *sockfd=atoi(pazresult[m]);
         return 0;
     }
+}
+
+int add_feiend_info_db(sqlite3* db,int id,char *username,char *usericon)
+{
+    char chmond[512]={0};
+    sprintf(chmond,"SELECT * FROM user WHERE id=%d",id);
+    int n,m;
+    char **pazresult=NULL,*errmsg;
+    int ret=sqlite3_get_table(db,chmond,&pazresult,&n,&m,&errmsg);
+    if(ret!=SQLITE_OK)
+    {
+        printf("errmsg=%s\n",errmsg);
+        return -1;
+    } 
+    if(0==n)
+        return -1;
+    strcpy(username,pazresult[m+1]);
+    strcpy(usericon,pazresult[m+3]);
+    return 0;
 }

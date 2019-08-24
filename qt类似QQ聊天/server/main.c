@@ -130,7 +130,7 @@ static void client_connect(void *arc)
         printf("%s\n",buf);
         switch (n)
         {
-            case 0:
+            case 0://登录
                 ret=sign_in(db,buf+2,sockfd);
                 if(-1==ret || 1==ret)
                     break;
@@ -142,27 +142,43 @@ static void client_connect(void *arc)
                     flag=1;
                 }
                 break;
-            case 1:
-                ret=logon(db,buf+2,sockfd);
-                if(-1==ret || 1==ret)
-                    break;
-                else
+            case 1://注册
+                logon(db,buf+2,sockfd);
+                break;
+            case 2://保留位
+            case 3://保留位
+            case 4://更改用户名
+                update_user(db,buf+2,0,sockfd);
+                break;
+            case 5://更改头像
+                ret=update_user(db,buf+2,1,sockfd);
+                if(2==ret)
                 {
-                    printf("注册退出\n");
+                    client_exit(db,id);
+                    update_online_db(db,sockfd);
+                    printf("客户端退出\n");
                     close(sockfd);
                     pthread_exit(NULL);
                 }
-            case 6:
+                break;
+            case 6://发送信息
                 ret=send_other(db,buf,sockfd);   
                 break;
-            default:
-                if(1==flag)
-                client_exit(db,id);
-                update_online_db(db,sockfd);
-                printf("客户端退出\n");
-                close(sockfd);
-                pthread_exit(NULL);
+            case 7://添加朋友
+                add_friend(db,buf,sockfd);
                 break;
+            case 8://删除朋友
+                delete_friend(db,buf+2,sockfd);
+                break;
+            // default:
+            //     if(1==flag)
+            //     printf("no fliag\n");
+            //     client_exit(db,id);
+            //     update_online_db(db,sockfd);
+            //     printf("客户端退出\n");
+            //     close(sockfd);
+            //     pthread_exit(NULL);
+            //     break;
         }
     }
     if(1==flag)

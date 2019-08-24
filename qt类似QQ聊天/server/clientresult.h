@@ -36,7 +36,7 @@ int logon(sqlite3 *db,char *chmond,int sockfd);
  * 返回值：     -1代表失败，0代表成功
  * 其他：       无
 **********************************************************************************/
-int update_user(sqlite3 *db,char *chmond,char *id,int n,int sockfd);
+int update_user(sqlite3 *db,char *chmond,int n,int sockfd);
 
 /**********************************************************************************
  * 函数：       send_other
